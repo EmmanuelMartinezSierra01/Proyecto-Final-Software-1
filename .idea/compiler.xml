@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="alcaldia-corocora" />
+        <module name="sistemaEmpleados" />
+        <module name="sistemaCiudadano" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="sistemaEmpleado" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="alcaldia-corocora" options="-parameters" />
+      <module name="sistemaCiudadano" options="-parameters" />
+      <module name="sistemaEmpleados" options="-parameters" />
+    </option>
+  </component>
+</project>

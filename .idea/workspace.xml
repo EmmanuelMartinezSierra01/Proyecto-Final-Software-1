@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8d9335e8-c44b-405c-bb13-9100ef367d4e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/java/com/soft1/controller/SolicitudPQRSConsultaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/java/com/soft1/delegate/NotificarRespuestaDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/java/com/soft1/delegate/NotificarRespuestaDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/java/com/soft1/entity/SolicitudPQRS.java" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/java/com/soft1/entity/SolicitudPQRS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/java/com/soft1/repository/SolicitudPQRSRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/java/com/soft1/repository/SolicitudPQRSRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/java/com/soft1/service/SolicitudPQRSService.java" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/java/com/soft1/service/SolicitudPQRSService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.bpmn/Espacio Publico.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.bpmn/Espacio Publico.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.bpmn/Facturacion.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.bpmn/Facturacion.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.bpmn/VerReqSol.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.bpmn/VerReqSol.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.bpmn/proceso_alcaldia_PQRS.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.bpmn/proceso_alcaldia_PQRS.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.dmn/ClasificarCobro.dmn" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.dmn/ClasificarCobro.dmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.form/AnalisisEspacio.form" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.form/AnalisisEspacio.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.form/Factura_Pago.form" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/src/main/resources/static.form/Factura_Pago.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/alcaldia-corocora-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/alcaldia-corocora-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/com/soft1/delegate/NotificarRespuestaDelegate.class" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/com/soft1/delegate/NotificarRespuestaDelegate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/com/soft1/entity/SolicitudPQRS.class" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/com/soft1/entity/SolicitudPQRS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/com/soft1/repository/SolicitudPQRSRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/com/soft1/repository/SolicitudPQRSRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/com/soft1/service/SolicitudPQRSService.class" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/com/soft1/service/SolicitudPQRSService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/static.bpmn/Espacio Publico.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/static.bpmn/Espacio Publico.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/static.bpmn/Facturacion.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/static.bpmn/Facturacion.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/static.bpmn/VerReqSol.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/static.bpmn/VerReqSol.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/static.dmn/ClasificarCobro.dmn" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/static.dmn/ClasificarCobro.dmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/static.form/Factura_Pago.form" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/classes/static.form/Factura_Pago.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/My-project-U Alcaldia Corocora/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/My-project-U Alcaldia Corocora" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="35tjeGzHK9mh73TcfEUFc5ArqQw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.All in sistemaCiudadano (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in sistemaCiudadano.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.SistemaCiudadanoApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.SistemaEmpleadosApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/emman/OneDrive/Escritorio/Proyecto Final Software 1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/emman/OneDrive/Escritorio/Proyecto Final Software 1/sistemaEmpleado/src/main/java/com/soft1/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\emman\OneDrive\Escritorio\Proyecto Final Software 1\sistemaEmpleados\src\main\resources\static" />
+      <recent name="C:\Users\emman\OneDrive\Escritorio\Proyecto Final Software 1\sistemaEmpleado\src\main\java\com.soft1.sistemaempleado" />
+      <recent name="C:\Users\emman\OneDrive\Escritorio\Proyecto Final Software 1\sistemaEmpleado\src\main\java" />
+      <recent name="C:\Users\emman\OneDrive\Escritorio\Proyecto Final Software 1\sistemaCiudadano\src\main\resources\static" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="Application" value="FAILED" />
+              <entry key="SistemaCiudadanoApplication" value="STOPPED" />
+              <entry key="SistemaEmpleadosApplication" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SistemaCiudadanoApplication">
+    <configuration name="All in sistemaCiudadano (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sistemaCiudadano" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in sistemaCiudadano" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sistemaCiudadano" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="alcaldia-corocora" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.soft1.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SistemaCiudadanoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="sistemaCiudadano" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.soft1.sistemaciudadano.SistemaCiudadanoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SistemaEmpleadosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="sistemaEmpleados" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.soft1.sistemaempleados.SistemaEmpleadosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in sistemaCiudadano (1)" />
+        <item itemvalue="JUnit.All in sistemaCiudadano" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8d9335e8-c44b-405c-bb13-9100ef367d4e" name="Changes" comment="" />
+      <created>1763936358481</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763936358481</updated>
+      <workItem from="1763936359720" duration="127000" />
+      <workItem from="1763936680580" duration="19000" />
+      <workItem from="1763936714067" duration="8465000" />
+      <workItem from="1764020336473" duration="2162000" />
+      <workItem from="1764117512042" duration="10916000" />
+      <workItem from="1764130118145" duration="825000" />
+      <workItem from="1764130958450" duration="5850000" />
+      <workItem from="1764157958657" duration="15887000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/sistemaEmpleado/src/main/java/com.soft1.sistemaempleado/soft1/Main.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

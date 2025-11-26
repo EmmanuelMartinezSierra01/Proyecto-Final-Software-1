@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud Ajuste Propuesta</title>
+    <style>
+        body { font-family: 'Montserrat', Arial, sans-serif; background: #f3f3fd; margin: 0; }
+        .form-card { margin: 40px auto; background: #fff; border-radius: 14px; max-width: 700px; box-shadow: 0 4px 24px #5a579726; padding: 32px 40px;}
+        label { color: #2b2d2f; font-weight: 600; font-size: 14px; margin-bottom: 4px; display: block;}
+        input, textarea {
+            width: 100%; border-radius: 6px; border: 2px solid #e0e0e0; padding: 10px 12px;
+            font-size: 14px; margin-bottom: 20px; background: #f5f5f5; color: #424242;
+        }
+        input[readonly], textarea[readonly] { background: #f5f5f5; color: #888; }
+        .enviar-btn {
+            margin-top: 10px; background: #536dfe; color: #fff; border: none; padding: 12px 32px; border-radius: 6px;
+            font-size: 16px; cursor: pointer; font-weight: 600; transition: background 0.16s;
+        }
+        .enviar-btn:disabled { background: #b4c2ef; color: #fff; cursor: not-allowed;}
+        .enviar-btn:hover { background: #3949ab; }
+        .volver-btn {
+            margin-bottom: 18px; background: #6a82fb; color: #fff; border: none; padding: 9px 22px; border-radius: 6px;
+            font-size: 15px; cursor: pointer; font-weight: 600; transition: background 0.16s;
+        }
+        .volver-btn:hover { background: #44318d; }
+        .exito-msg { color: #28bb6a; margin-top: 16px; font-size: 15px; font-weight: 600;}
+    </style>
+</head>
+<body>
+<div class="form-card">
+    <button onclick="window.location.href='menuEmpleado.html'" class="volver-btn">
+        ← Volver al inicio
+    </button>
+    <h2 style="margin-bottom:18px;">Solicitud Ajuste Propuesta</h2>
+
+    <label for="solicitudAjuste">Solicitud Ajuste Propuesta</label>
+    <textarea id="solicitudAjuste" placeholder="Describa el ajuste solicitado..."></textarea>
+
+    <button class="enviar-btn" id="btnEnviar" onclick="enviarAjuste()" disabled>Enviar ajuste</button>
+    <div id="mensajeExito" class="exito-msg" style="display:none;"></div>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const taskId = params.get('taskId');
+
+    function mostrarExito(msg) {
+        document.getElementById('mensajeExito').innerText = msg;
+        document.getElementById('mensajeExito').style.display = '';
+        document.getElementById('btnEnviar').disabled = true;
+        document.getElementById('solicitudAjuste').disabled = true;
+    }
+
+    // Solo habilita el botón cuando la petición inicial termina (puedes agregar validación extra si quieres)
+    if (!taskId) {
+        alert('No se especificó taskId en la URL.');
+    } else {
+        document.getElementById('btnEnviar').disabled = false;
+    }
+
+    function enviarAjuste() {
+        const ajuste = document.getElementById('solicitudAjuste').value.trim();
+        const btn = document.getElementById('btnEnviar');
+        if (!ajuste) {
+            alert('Por favor ingrese el mensaje de ajuste.');
+            return;
+        }
+        btn.disabled = true;
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId) + '/completar', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                solicitudAjuste: { value: ajuste, type: "String" }
+            })
+        })
+            .then(r => {
+                if (r.ok) {
+                    mostrarExito('✅ Solicitud de ajuste enviada y el proceso avanzó.');
+                } else {
+                    btn.disabled = false;
+                    alert('Error al enviar el ajuste.');
+                }
+            })
+            .catch(() => {
+                btn.disabled = false;
+                alert('Error de conexión al enviar el ajuste.');
+            });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Solicitud PQRS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+        .volver-btn {
+            width: 100%;
+            margin-bottom: 12px;
+            background: #6a82fb;
+            color: #fff;
+            border: none;
+            padding: 10px 0;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.18s;
+        }
+        .volver-btn:hover { background: #44318d; }
+        h1 { color: #333; font-size: 24px; margin-bottom: 10px; text-align: center; }
+        .subtitle { color: #666; text-align: center; margin-bottom: 30px; font-size: 14px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; color: #333; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
+        input[type="text"], input[type="email"], select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        textarea { resize: vertical; min-height: 100px; }
+        .required { color: #e74c3c; }
+        button[type="submit"], #btnEnviar {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+        button[type="submit"]:hover, #btnEnviar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        button[type="submit"]:active, #btnEnviar:active { transform: translateY(0); }
+        button[type="submit"]:disabled, #btnEnviar:disabled {
+            background: #ccc; cursor: not-allowed; transform: none;
+        }
+        .alert { padding: 15px; border-radius: 6px; margin-bottom: 20px; display: none; }
+        .alert-success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .alert-error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .alert.show { display: block; }
+        .loading { display: none; text-align: center; padding: 20px; }
+        .loading.show { display: block; }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;
+        }
+        @keyframes spin { 0% {transform: rotate(0deg);} 100% {transform: rotate(360deg);} }
+    </style>
+</head>
+<body>
+<div class="container">
+    <button onclick="window.location.href='index.html'" type="button" class="volver-btn">
+        ← Volver al inicio
+    </button>
+    <h1>📋 Registrar Solicitud PQRS</h1>
+    <p class="subtitle">Complete el siguiente formulario para registrar su petición, queja o reclamo</p>
+
+    <div id="alertSuccess" class="alert alert-success">
+        ✅ ¡Solicitud enviada correctamente! Gracias por contactar a la Alcaldía.
+    </div>
+
+    <div id="alertError" class="alert alert-error">
+        ❌ <span id="errorMessage">Error al enviar la solicitud</span>
+    </div>
+
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p style="margin-top: 10px; color: #666;">Enviando solicitud...</p>
+    </div>
+
+    <form id="formPQRS">
+        <div class="form-group">
+            <label for="nombreSolicitante">
+                Nombres y Apellidos <span class="required">*</span>
+            </label>
+            <input type="text" id="nombreSolicitante" name="nombreSolicitante" placeholder="Ej: Juan Pérez García" required minlength="3">
+        </div>
+        <div class="form-group">
+            <label for="cedula">Cédula <span class="required">*</span></label>
+            <input type="text" id="cedula" name="cedula" placeholder="Ej: 1234567890" required minlength="6" maxlength="20">
+        </div>
+        <div class="form-group">
+            <label for="numeroCelular">Número de celular <span class="required">*</span></label>
+            <input type="text" id="numeroCelular" name="numeroCelular" placeholder="Ej: 3001234567" required minlength="10" maxlength="15">
+        </div>
+        <div class="form-group">
+            <label for="correoElectronico">Correo electrónico <span class="required">*</span></label>
+            <input type="email" id="correoElectronico" name="correoElectronico" placeholder="Ej: ejemplo@correo.com" required>
+        </div>
+        <div class="form-group">
+            <label for="direccion">Dirección <span class="required">*</span></label>
+            <input type="text" id="direccion" name="direccion" placeholder="Ej: Calle 123 #45-67" required minlength="10">
+        </div>
+        <div class="form-group">
+            <label for="tipoSolicitud">Tipo de solicitud <span class="required">*</span></label>
+            <select id="tipoSolicitud" name="tipoSolicitud" required>
+                <option value="">-- Seleccione una opción --</option>
+                <option value="peticion">Petición</option>
+                <option value="queja">Queja</option>
+                <option value="reclamo">Reclamo</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="detalleSolicitud">Detalle de la solicitud <span class="required">*</span></label>
+            <textarea id="detalleSolicitud" name="detalleSolicitud" placeholder="Describa detalladamente su solicitud..." required minlength="20"></textarea>
+        </div>
+        <button type="submit" id="btnEnviar">Enviar Solicitud PQRS</button>
+    </form>
+</div>
+
+<script>
+    // Referencias al DOM
+    const form = document.getElementById('formPQRS');
+    const btnEnviar = document.getElementById('btnEnviar');
+    const loading = document.getElementById('loading');
+    const alertSuccess = document.getElementById('alertSuccess');
+    const alertError = document.getElementById('alertError');
+    const errorMessage = document.getElementById('errorMessage');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        alertSuccess.classList.remove('show');
+        alertError.classList.remove('show');
+
+        loading.classList.add('show');
+        form.style.display = 'none';
+
+        const formData = new FormData(form);
+        const data = {
+            nombreSolicitante: formData.get('nombreSolicitante'),
+            cedula: formData.get('cedula'),
+            numeroCelular: formData.get('numeroCelular'),
+            correoElectronico: formData.get('correoElectronico'),
+            direccion: formData.get('direccion'),
+            tipoSolicitud: formData.get('tipoSolicitud'),
+            detalleSolicitud: formData.get('detalleSolicitud')
+        };
+
+        try {
+            const response = await fetch('/api/pqrs/registrar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            let result;
+            try { result = await response.json(); } catch (err) { result = { mensaje: 'Error inesperado' }; }
+            loading.classList.remove('show');
+
+            if (response.ok) {
+                alertSuccess.classList.add('show');
+                alertSuccess.querySelector('span') || (alertSuccess.innerHTML = '✅ ' + (result.mensaje || '¡Solicitud enviada correctamente! Gracias por contactar a la Alcaldía.'));
+                form.remove();
+            } else {
+                form.style.display = 'block';
+                alertError.classList.add('show');
+                errorMessage.textContent = result.mensaje || 'Error al enviar la solicitud. Por favor, intente nuevamente.';
+            }
+        } catch (error) {
+            loading.classList.remove('show');
+            form.style.display = 'block';
+            alertError.classList.add('show');
+            errorMessage.textContent = 'Error de conexión. Verifique su internet e intente nuevamente.';
+            console.error('Error de conexión:', error);
+        }
+    });
+</script>
+</body>
+</html>

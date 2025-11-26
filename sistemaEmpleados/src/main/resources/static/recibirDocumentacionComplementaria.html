@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Recepción de Documentación Complementaria</title>
+    <style>
+        body { font-family:'Montserrat', Arial, sans-serif; background:#f3f3fd;}
+        .form-card { margin:40px auto; background:#fff; border-radius:14px; max-width:1080px; box-shadow:0 4px 24px #5a579726; padding:32px 40px;}
+        label { color:#2b2d2f; font-weight:600; font-size:15px; margin-bottom:4px; display:block;}
+        input, textarea {
+            width:100%; border-radius:6px; border:2px solid #e0e0e0; padding:10px 12px;
+            font-size:16px; margin-bottom:18px; background:#f5f5f5; color:#424242;
+        }
+        .checkbox-row { display:flex; gap:30px; margin-bottom:18px;}
+        .checkbox-label { font-weight:500; margin-left:4px; }
+        input[type="checkbox"] { width:auto; }
+        .flex-row { display:flex; gap:30px;}
+        .flex-g { flex:1; }
+        .radio-group { margin-bottom:22px; }
+        .radio-label { margin-right:18px; font-weight:500; }
+        .enviar-btn { background:#536dfe; color:#fff; border:none; padding:12px 36px; border-radius:6px;
+            font-size:16px; cursor:pointer; font-weight:600; margin-top:15px;}
+        .enviar-btn:disabled { background:#b4c2ef; }
+        .exito-msg { color:#28bb6a; margin-top:16px; font-size:15px; font-weight:600;}
+        small { color:#888; }
+    </style>
+</head>
+<body>
+<div class="form-card">
+    <h2 style="margin-bottom:18px;">Recepción documentación complementaria</h2>
+    <form id="docForm">
+        <label for="solicitudId">Solicitud ID</label>
+        <input type="text" id="solicitudId" name="solicitudId" readonly>
+
+        <label for="nombreSolicitante">Nombre del solicitante</label>
+        <input type="text" id="nombreSolicitante" name="nombreSolicitante" readonly>
+
+        <label for="informacionSolicitada">Información que fue solicitada al ciudadano</label>
+        <textarea id="informacionSolicitada" name="informacionSolicitada" readonly></textarea>
+
+        <label for="fechaLimiteDocumentos">Fecha límite para presentar documentación</label>
+        <input type="text" id="fechaLimiteDocumentos" name="fechaLimiteDocumentos" readonly>
+
+        <div class="checkbox-row">
+            <div>
+                <input type="checkbox" id="escrituraRecibida" name="escrituraRecibida">
+                <label for="escrituraRecibida" class="checkbox-label">Escritura del predio recibida</label>
+            </div>
+            <div>
+                <input type="checkbox" id="planosRecibidos" name="planosRecibidos">
+                <label for="planosRecibidos" class="checkbox-label">Planos arquitectónicos y estructurales recibidos</label>
+            </div>
+            <div>
+                <input type="checkbox" id="certificadosRecibidos" name="certificadosRecibidos">
+                <label for="certificadosRecibidos" class="checkbox-label">Certificados de uso de suelo recibidos</label>
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <div class="flex-g">
+                <label for="observacionesDocumentacion">Observaciones sobre la documentación recibida</label>
+                <textarea id="observacionesDocumentacion" name="observacionesDocumentacion" placeholder="Indique el estado de los documentos recibidos"></textarea>
+            </div>
+            <div class="flex-g radio-group">
+                <label>¿El ciudadano presentó la documentación complementaria solicitada?*</label>
+                <div>
+                    <input type="radio" id="docPresentada" name="documentacionRecibida" value="true">
+                    <label for="docPresentada" class="radio-label">Documentación presentada</label>
+                    <input type="radio" id="noDocPresentada" name="documentacionRecibida" value="false">
+                    <label for="noDocPresentada" class="radio-label">No presentó documentación</label>
+                </div>
+            </div>
+        </div>
+
+        <label>¿La documentación ahora está completa?*</label>
+        <div>
+            <input type="radio" id="docCompleta" name="documentacionCompleta" value="true">
+            <label for="docCompleta" class="radio-label">Documentación completa</label>
+            <input type="radio" id="docFalta" name="documentacionCompleta" value="false">
+            <label for="docFalta" class="radio-label">Aún falta documentación</label>
+        </div>
+        <small>Considerando los documentos iniciales más los complementarios</small>
+
+        <button class="enviar-btn" type="submit" id="btnEnviar">Completar recepción</button>
+    </form>
+    <div id="mensajeExito" class="exito-msg" style="display:none;"></div>
+</div>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const taskId = params.get('taskId');
+    if (taskId) {
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId))
+            .then(r=>r.json())
+            .then(data=>{
+                document.getElementById('solicitudId').value = data.solicitudId?.value || '';
+                document.getElementById('nombreSolicitante').value = data.nombreSolicitante?.value || '';
+                document.getElementById('informacionSolicitada').value = data.informacionSolicitada?.value || '';
+                document.getElementById('fechaLimiteDocumentos').value = data.fechaLimiteDocumentos?.value || '';
+                document.getElementById('escrituraRecibida').checked = data.escrituraRecibida?.value === true;
+                document.getElementById('planosRecibidos').checked = data.planosRecibidos?.value === true;
+                document.getElementById('certificadosRecibidos').checked = data.certificadosRecibidos?.value === true;
+                document.getElementById('observacionesDocumentacion').value = data.observacionesDocumentacion?.value || '';
+                // Marcado rádios
+                if (data.documentacionRecibida?.value === true) document.getElementById('docPresentada').checked = true;
+                if (data.documentacionRecibida?.value === false) document.getElementById('noDocPresentada').checked = true;
+                if (data.documentacionCompleta?.value === true) document.getElementById('docCompleta').checked = true;
+                if (data.documentacionCompleta?.value === false) document.getElementById('docFalta').checked = true;
+            });
+    }
+    document.getElementById('docForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!taskId) {
+            alert('No se pudo determinar el taskId.');
+            return;
+        }
+        const radiosRecibida = document.querySelector('input[name="documentacionRecibida"]:checked');
+        const radiosCompleta = document.querySelector('input[name="documentacionCompleta"]:checked');
+        if(!radiosRecibida || !radiosCompleta) {
+            alert('Complete todos los campos obligatorios.');
+            return;
+        }
+        const vars = {
+            escrituraRecibida:   { value: document.getElementById('escrituraRecibida').checked, type: "Boolean" },
+            planosRecibidos:     { value: document.getElementById('planosRecibidos').checked, type: "Boolean" },
+            certificadosRecibidos: { value: document.getElementById('certificadosRecibidos').checked, type: "Boolean" },
+            observacionesDocumentacion: { value: document.getElementById('observacionesDocumentacion').value, type: "String" },
+            documentacionRecibida: { value: radiosRecibida.value === "true", type: "Boolean" },
+            documentacionCompleta: { value: radiosCompleta.value === "true", type: "Boolean" }
+        };
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId) + '/completar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(vars)
+        }).then(r => {
+            if(r.ok) {
+                document.getElementById('mensajeExito').innerText = '✅ Recepción completada correctamente.';
+                document.getElementById('mensajeExito').style.display = '';
+                document.getElementById('btnEnviar').disabled = true;
+            } else {
+                alert('Error al registrar la información.');
+            }
+        }).catch(() => {
+            alert('Error de conexión.');
+        });
+    });
+</script>
+</body>
+</html>

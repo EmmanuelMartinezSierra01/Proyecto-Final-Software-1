@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingresar Cobro de Espacio</title>
+    <style>
+        body { font-family: 'Montserrat', Arial, sans-serif; background: #f3f3fd; }
+        .form-card { margin: 40px auto; background: #fff; border-radius: 14px; max-width: 460px; box-shadow: 0 4px 24px #5a579726; padding: 32px 40px;}
+        label { color: #2b2d2f; font-weight: 600; font-size: 16px; margin-bottom: 6px; display: block;}
+        input { width: 100%; border-radius: 6px; border: 2px solid #e0e0e0; padding: 10px 12px; font-size: 16px; margin-bottom: 20px; background: #f5f5f5; color: #424242;}
+        input[readonly] { background: #f5f5f5; color: #888;}
+        .enviar-btn { margin-top: 10px; background: #536dfe; color: #fff; border: none; padding: 12px 32px; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: 600; transition: background 0.16s; }
+        .enviar-btn:disabled { background: #b4c2ef; color: #fff; cursor: not-allowed;}
+        .enviar-btn:hover { background: #3949ab; }
+        .volver-btn { margin-bottom: 20px; background: #6a82fb; color: #fff; border: none; padding: 9px 22px; border-radius: 6px; font-size: 15px; cursor: pointer; font-weight: 600; transition: background 0.16s;}
+        .volver-btn:hover { background: #44318d; }
+        .exito-msg { color: #28bb6a; margin-top: 16px; font-size: 15px; font-weight: 600;}
+    </style>
+</head>
+<body>
+<div class="form-card">
+    <button onclick="window.location.href='menuEmpleado.html'" class="volver-btn">← Volver al inicio</button>
+    <h2 style="margin-bottom:14px;">Datos de espacio público</h2>
+
+    <form id="cobroForm">
+        <label for="tipoUso">Tipo de uso</label>
+        <input type="text" id="tipoUso" readonly>
+        <small style="color: #757575;">Qué tipo de uso va a hacer</small>
+
+        <label for="Cobro">Cobro</label>
+        <input type="number" id="Cobro" required>
+
+        <button class="enviar-btn" type="submit" id="btnEnviar">Guardar</button>
+    </form>
+    <div id="mensajeExito" class="exito-msg" style="display:none;"></div>
+</div>
+
+<script>
+    // Lee el taskId de la URL.
+    const params = new URLSearchParams(window.location.search);
+    const taskId = params.get('taskId');
+
+    if (!taskId) {
+        alert('No se especificó taskId en la URL.');
+    } else {
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId))
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('tipoUso').value = data.Tipo_Uso?.value || '';
+                document.getElementById('Cobro').value = data.Cobro?.value !== undefined ? data.Cobro.value : '';
+            })
+            .catch(() => {
+                alert('Error consultando detalles del proceso.');
+            });
+    }
+
+    document.getElementById('cobroForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if(!taskId) {
+            alert('No se pudo determinar el taskId.');
+            return;
+        }
+        const cobroValue = document.getElementById('Cobro').value;
+        if (cobroValue.trim() === '') {
+            alert('Debe ingresar un valor para Cobro.');
+            return;
+        }
+        // Envía/actualiza el valor de Cobro como Integer en Camunda
+        const variables = {
+            Cobro: { value: parseInt(cobroValue), type: "Integer" }
+        };
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId) + '/completar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(variables)
+        }).then(r => {
+            if(r.ok) {
+                document.getElementById('mensajeExito').innerText = '✅ Guardado correctamente.';
+                document.getElementById('mensajeExito').style.display = '';
+                document.getElementById('btnEnviar').disabled = true;
+                document.getElementById('Cobro').readOnly = true;
+            } else {
+                alert('Error al guardar el valor.');
+            }
+        }).catch(() => {
+            alert('Error de conexión.');
+        });
+    });
+</script>
+</body>
+</html>

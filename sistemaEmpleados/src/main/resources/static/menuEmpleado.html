@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Sistema Empleado</title>
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #f3f3fd;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(76,51,158,0.16);
+            max-width: 700px;
+            margin-top: 45px;
+            padding: 34px 40px;
+            width: 100%;
+        }
+        h1 { color: #282c34; font-size: 27px; margin-bottom: 12px; }
+        .procesos-list { margin-top:18px; }
+        .proceso-item {
+            background: #f8faff;
+            border-left: 5px solid #6a82fb;
+            margin-bottom: 18px;
+            padding: 14px 18px;
+            border-radius: 7px;
+        }
+        .proceso-item span {
+            font-size: 14px;
+            color: #716fa1;
+        }
+        .ver-btn {
+            background: #6a82fb;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.16s;
+            float: right;
+        }
+        .ver-btn:hover { background: #44318d; }
+        .empty-list { color: #b5b3c8; font-size: 16px; margin-top:22px; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>Procesos pendientes para gestión</h1>
+    <div id="listaProcesos" class="procesos-list">
+        <div class="empty-list">Cargando lista de tareas...</div>
+    </div>
+</div>
+
+<script>
+    // Esta función define a qué HTML se va según el key
+    function getHtmlParaTaskId(taskDefinitionKey) {
+        if (taskDefinitionKey === "Activity_0ijhyc3") return "detalle.html";
+        if (taskDefinitionKey === "Activity_1tewodk") return "propuesta.html";
+        if (taskDefinitionKey === "Activity_0ldryuj") return "revision-propuesta.html";
+        if (taskDefinitionKey === "Activity_189q2mv") return "ajuste-propuesta.html";
+        if (taskDefinitionKey === "Activity_0axdnm8") return "propuesta-final.html";
+        if(taskDefinitionKey === "Activity_1mspgog") return "revisarDocumentos.html"
+        if(taskDefinitionKey === "Activity_1ihplv9") return "evaluarRequisitosNecesarios.html"
+        if(taskDefinitionKey === "Activity_0ihkixm") return "analisisEspacio.html"
+        if(taskDefinitionKey === "Activity_05cyvbs") return "generarFactura.html"
+        if(taskDefinitionKey === "Activity_19i35t2") return "ingresoPago.html"
+        if(taskDefinitionKey === "revisarDocumentacionSubproceso") return "revisarDocumentacion.html"
+        if(taskDefinitionKey === "solicitarInformacionAdicional") return "solicitarInformacion.html"
+        if(taskDefinitionKey === "recibirDocumentacionComplementaria") return "recibirDocumentacionComplementaria.html"
+        if(taskDefinitionKey === "archivarIncumplimiento") return "archivarIncumplimiento.html"
+        if(taskDefinitionKey === "evaluacionTecnica") return "evaluacionTecnica.html"
+        if(taskDefinitionKey === "evaluacionJuridica") return "evaluacionJuridica.html"
+        if(taskDefinitionKey === "emitirConcepto") return "emitirConcepto.html"
+        return "detalle.html";
+    }
+
+    fetch('/api/empleado/tareas-pendientes')
+        .then(r => r.json())
+        .then(data => {
+            const cont = document.getElementById('listaProcesos');
+            cont.innerHTML = '';
+            if (!data.length) {
+                cont.innerHTML = '<div class="empty-list">No hay tareas pendientes por resolver.</div>';
+            } else {
+                data.forEach(task => {
+                    const url = getHtmlParaTaskId(task.taskDefinitionKey)
+                        + `?taskId=${task.id}&processInstanceId=${task.processInstanceId}`;
+                    const item = document.createElement('div');
+                    item.className = 'proceso-item';
+                    item.innerHTML = `
+                    <b>${task.name}</b>
+                    <span>(ProcessInstanceId: ${task.processInstanceId})</span>
+                    <button class="ver-btn" onclick="window.location.href='${url}'">
+                        Gestionar
+                    </button>
+                `;
+                    cont.appendChild(item);
+                });
+            }
+        })
+        .catch(() => {
+            document.getElementById('listaProcesos').innerHTML =
+                '<div class="empty-list">Error consultando tareas. Intente nuevamente.</div>';
+        });
+</script>
+</body>
+</html>

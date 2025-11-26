@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Emitir concepto</title>
+    <style>
+        body { font-family:'Montserrat', Arial, sans-serif; background:#f3f3fd;}
+        .form-card { margin:40px auto; background:#fff; border-radius:14px; max-width:1100px; box-shadow:0 4px 24px #5a579726; padding:32px 40px;}
+        label { color:#2b2d2f; font-weight:600; font-size:15px; margin-bottom:4px; display:block;}
+        input, textarea {
+            width:100%; border-radius:6px; border:2px solid #e0e0e0; padding:10px 12px;
+            font-size:16px; margin-bottom:18px; background:#f5f5f5; color:#424242;
+        }
+        input[readonly], textarea[readonly] { color:#888; }
+        .flex-row { display:flex; gap:22px;}
+        .col-radio { display: flex; flex-direction: column; gap:5px; }
+        .radio-group { margin-bottom:13px; }
+        .radio-label { margin-left:8px; font-weight:500; }
+        .enviar-btn { background:#536dfe; color:#fff; border:none; padding:12px 36px; border-radius:6px;
+            font-size:16px; cursor:pointer; font-weight:600; margin-top:15px;}
+        .enviar-btn:disabled { background:#b4c2ef; }
+        .exito-msg { color:#28bb6a; margin-top:16px; font-size:15px; font-weight:600;}
+        small { color:#888; }
+    </style>
+</head>
+<body>
+<div class="form-card">
+    <h2 style="margin-bottom:18px;">Emisión de concepto final</h2>
+    <form id="conceptoForm">
+        <label for="solicitudId">Solicitud ID</label>
+        <input type="text" id="solicitudId" name="solicitudId" readonly>
+        <label for="nombreSolicitante">Nombre del solicitante</label>
+        <input type="text" id="nombreSolicitante" name="nombreSolicitante" readonly>
+        <div class="flex-row">
+            <div class="col-radio" style="flex:1;">
+                <label>Evaluación técnica</label>
+                <div class="radio-group">
+                    <input type="radio" id="evalTecAprobada" name="evaluacionTecnica" value="true" disabled>
+                    <label for="evalTecAprobada" class="radio-label">APROBADA</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="evalTecRechazada" name="evaluacionTecnica" value="false" disabled>
+                    <label for="evalTecRechazada" class="radio-label">RECHAZADA</label>
+                </div>
+                <label for="observacionesTecnicas">Observaciones técnicas</label>
+                <textarea id="observacionesTecnicas" name="observacionesTecnicas" readonly></textarea>
+            </div>
+            <div class="col-radio" style="flex:1;">
+                <label>Evaluación jurídica</label>
+                <div class="radio-group">
+                    <input type="radio" id="evalJurAprobada" name="evaluacionJuridica" value="true" disabled>
+                    <label for="evalJurAprobada" class="radio-label">APROBADA</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="evalJurRechazada" name="evaluacionJuridica" value="false" disabled>
+                    <label for="evalJurRechazada" class="radio-label">RECHAZADA</label>
+                </div>
+                <label for="observacionesJuridicas">Observaciones jurídicas</label>
+                <textarea id="observacionesJuridicas" name="observacionesJuridicas" readonly></textarea>
+            </div>
+            <div class="col-radio" style="flex:0.6;">
+                <label>Concepto final*</label>
+                <div class="radio-group">
+                    <input type="radio" id="conceptoFavorable" name="conceptoFavorable" value="true">
+                    <label for="conceptoFavorable" class="radio-label">FAVORABLE</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="conceptoDesfavorable" name="conceptoFavorable" value="false">
+                    <label for="conceptoDesfavorable" class="radio-label">DESFAVORABLE</label>
+                </div>
+                <small>¿Qué concepto se toma?</small>
+            </div>
+        </div>
+        <button class="enviar-btn" type="submit" id="btnEnviar">Emitir concepto</button>
+    </form>
+    <div id="mensajeExito" class="exito-msg" style="display:none;"></div>
+</div>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const taskId = params.get('taskId');
+    if (taskId) {
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId))
+            .then(r=>r.json())
+            .then(data=>{
+                document.getElementById('solicitudId').value = data.solicitudId?.value || '';
+                document.getElementById('nombreSolicitante').value = data.nombreSolicitante?.value || '';
+                // Evaluaciones técnicas y jurídicas son solo lectura (mostradas y seleccionadas)
+                if(data.evaluacionTecnica?.value === true)  document.getElementById('evalTecAprobada').checked = true;
+                if(data.evaluacionTecnica?.value === false) document.getElementById('evalTecRechazada').checked = true;
+                if(data.evaluacionJuridica?.value === true)  document.getElementById('evalJurAprobada').checked = true;
+                if(data.evaluacionJuridica?.value === false) document.getElementById('evalJurRechazada').checked = true;
+                document.getElementById('observacionesTecnicas').value = data.observacionesTecnicas?.value || '';
+                document.getElementById('observacionesJuridicas').value = data.observacionesJuridicas?.value || '';
+                if(data.conceptoFavorable?.value === true)  document.getElementById('conceptoFavorable').checked = true;
+                if(data.conceptoFavorable?.value === false) document.getElementById('conceptoDesfavorable').checked = true;
+            });
+    }
+    document.getElementById('conceptoForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!taskId) {
+            alert('No se pudo determinar el taskId.');
+            return;
+        }
+        const r = document.querySelector('input[name="conceptoFavorable"]:checked');
+        if(!r){
+            alert('Seleccione el concepto final.');
+            return;
+        }
+        const vars = {
+            conceptoFavorable: { value: r.value === "true", type: "Boolean" }
+        };
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId) + '/completar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(vars)
+        }).then(r => {
+            if(r.ok) {
+                document.getElementById('mensajeExito').innerText = '✅ Concepto emitido correctamente.';
+                document.getElementById('mensajeExito').style.display = '';
+                document.getElementById('btnEnviar').disabled = true;
+            } else {
+                alert('Error al emitir el concepto.');
+            }
+        }).catch(() => {
+            alert('Error de conexión.');
+        });
+    });
+</script>
+</body>
+</html>

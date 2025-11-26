@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitar Información Adicional</title>
+    <style>
+        body { font-family:'Montserrat', Arial, sans-serif; background:#f3f3fd;}
+        .form-card { margin:40px auto; background:#fff; border-radius:14px; max-width:1080px; box-shadow:0 4px 24px #5a579726; padding:32px 40px;}
+        label { color:#2b2d2f; font-weight:600; font-size:15px; margin-bottom:4px; display:block;}
+        input, textarea, select {
+            width:100%; border-radius:6px; border:2px solid #e0e0e0; padding:10px 12px;
+            font-size:16px; margin-bottom:18px; background:#f5f5f5; color:#424242;
+        }
+        input[readonly], textarea[readonly] { color:#888; }
+        .flex-row { display:flex; gap:16px;}
+        .flex-g { flex:1; }
+        .center-v { display:flex; align-items:center; }
+        .radio-group { margin-bottom:22px; }
+        .radio-label { margin-right:18px; font-weight:500; }
+        .enviar-btn { background:#536dfe; color:#fff; border:none; padding:12px 36px; border-radius:6px;
+            font-size:16px; cursor:pointer; font-weight:600; margin-top:15px;}
+        .enviar-btn:disabled { background:#b4c2ef; }
+        .exito-msg { color:#28bb6a; margin-top:16px; font-size:15px; font-weight:600;}
+        small { color:#888; }
+    </style>
+</head>
+<body>
+<div class="form-card">
+    <h2 style="margin-bottom:18px;">Solicitar información/documentos adicionales al ciudadano</h2>
+    <form id="infoForm">
+        <div class="flex-row">
+            <div class="flex-g">
+                <label for="solicitudId">Solicitud ID</label>
+                <input type="text" id="solicitudId" name="solicitudId" readonly>
+            </div>
+            <div class="flex-g">
+                <label for="nombreSolicitante">Nombre del solicitante</label>
+                <input type="text" id="nombreSolicitante" name="nombreSolicitante" readonly>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="flex-g">
+                <label for="documentosFaltantes">Documentos identificados como faltantes</label>
+                <textarea id="documentosFaltantes" name="documentosFaltantes" readonly></textarea>
+            </div>
+            <div class="flex-g">
+                <label for="informacionSolicitada">Detalle de la información y documentos solicitados*</label>
+                <textarea id="informacionSolicitada" name="informacionSolicitada" required placeholder="Especifique claramente qué debe presentar el ciudadano"></textarea>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="flex-g">
+                <label for="fechaLimiteDocumentos">Fecha límite para presentar documentación*</label>
+                <input type="text" id="fechaLimiteDocumentos" name="fechaLimiteDocumentos" required placeholder="YYYY-MM-DD">
+                <small>Formato: YYYY-MM-DD (máximo 30 días)</small>
+            </div>
+            <div class="flex-g radio-group">
+                <label>¿Confirmar envío de solicitud al ciudadano?</label>
+                <div class="center-v mb8">
+                    <input type="radio" id="enviar" name="solicitudEnviada" value="true">
+                    <label for="enviar" class="radio-label">Enviar</label>
+                    <input type="radio" id="cancelar" name="solicitudEnviada" value="false">
+                    <label for="cancelar" class="radio-label">Cancelar</label>
+                </div>
+            </div>
+        </div>
+        <button class="enviar-btn" type="submit" id="btnEnviar">Completar solicitud</button>
+    </form>
+    <div id="mensajeExito" class="exito-msg" style="display:none;"></div>
+</div>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const taskId = params.get('taskId');
+    if (taskId) {
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId))
+            .then(r=>r.json())
+            .then(data=>{
+                document.getElementById('solicitudId').value = data.solicitudId?.value || '';
+                document.getElementById('nombreSolicitante').value = data.nombreSolicitante?.value || '';
+                document.getElementById('documentosFaltantes').value = data.documentosFaltantes?.value || '';
+                // informaciónSolicitada y fecha límite pueden llegar desde el proceso o editarse aquí.
+                document.getElementById('informacionSolicitada').value = data.informacionSolicitada?.value || '';
+                document.getElementById('fechaLimiteDocumentos').value = data.fechaLimiteDocumentos?.value || '';
+            });
+    }
+    document.getElementById('infoForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!taskId) {
+            alert('No se pudo determinar el taskId.');
+            return;
+        }
+        const solicitudEnviada = document.querySelector('input[name="solicitudEnviada"]:checked');
+        if(!solicitudEnviada) {
+            alert('Seleccione si desea Enviar o Cancelar la solicitud.');
+            return;
+        }
+        const info = {
+            informacionSolicitada: { value: document.getElementById('informacionSolicitada').value, type: "String" },
+            fechaLimiteDocumentos: { value: document.getElementById('fechaLimiteDocumentos').value, type: "String" },
+            solicitudEnviada: { value: solicitudEnviada.value === "true", type:"Boolean"}
+        };
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId) + '/completar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(info)
+        }).then(r => {
+            if(r.ok) {
+                document.getElementById('mensajeExito').innerText = '✅ Solicitud completada correctamente.';
+                document.getElementById('mensajeExito').style.display = '';
+                document.getElementById('btnEnviar').disabled = true;
+            } else {
+                alert('Error al enviar la solicitud.');
+            }
+        }).catch(() => {
+            alert('Error de conexión.');
+        });
+    });
+</script>
+</body>
+</html>

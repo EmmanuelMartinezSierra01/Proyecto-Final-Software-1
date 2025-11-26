@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluar requisitos necesarios</title>
+    <style>
+        body { font-family: 'Montserrat', Arial, sans-serif; background: #f3f3fd;}
+        .form-card { margin: 40px auto; background: #fff; border-radius: 14px; max-width: 480px; box-shadow: 0 4px 24px #5a579726; padding: 32px 40px;}
+        label { color: #2b2d2f; font-weight: 600; font-size: 16px; margin-bottom: 10px; display: block;}
+        .checkbox-group { margin-bottom: 24px;}
+        .checkbox-inline { display: flex; align-items: center; margin-bottom: 12px;}
+        .checkbox-inline input[type="checkbox"] { width: auto; margin-right: 10px;}
+        .enviar-btn {
+            margin-top: 12px; background: #536dfe; color: #fff; border: none; padding: 12px 32px; border-radius: 6px;
+            font-size: 16px; cursor: pointer; font-weight: 600; transition: background 0.16s;
+        }
+        .enviar-btn:disabled { background: #b4c2ef; color: #fff; cursor: not-allowed;}
+        .enviar-btn:hover { background: #3949ab; }
+        .volver-btn {
+            margin-bottom: 18px; background: #6a82fb; color: #fff; border: none; padding: 9px 22px; border-radius: 6px;
+            font-size: 15px; cursor: pointer; font-weight: 600; transition: background 0.16s;
+        }
+        .volver-btn:hover { background: #44318d;}
+        .exito-msg { color: #28bb6a; margin-top: 18px; font-size: 15px; font-weight: 600;}
+        .descripcion { color: #666; font-size: 14px; margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+<div class="form-card">
+    <button onclick="window.location.href='menuEmpleado.html'" class="volver-btn">← Volver al inicio</button>
+    <h2 style="margin-bottom:12px;">Requisitos necesarios</h2>
+    <div class="descripcion">Requisitos necesarios para la aprobación de la solicitud</div>
+    <form id="revForm">
+        <div class="checkbox-group">
+            <div class="checkbox-inline">
+                <input type="checkbox" id="EspacioLibre" value="EspacioLibre">
+                <label for="EspacioLibre">Espacio Libre</label>
+            </div>
+            <div class="checkbox-inline">
+                <input type="checkbox" id="UsoCorrecto" value="UsoCorrecto">
+                <label for="UsoCorrecto">Uso Correcto</label>
+            </div>
+        </div>
+        <button class="enviar-btn" type="submit" id="btnEnviar">Guardar evaluación</button>
+    </form>
+    <div id="mensajeExito" class="exito-msg" style="display:none;"></div>
+</div>
+
+<script>
+    // lee el taskId de la URL para cargar y completar la tarea
+    const params = new URLSearchParams(window.location.search);
+    const taskId = params.get('taskId');
+
+    // Carga valores actuales de la tarea para marcar checks si ya están seleccionados
+    if(taskId){
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId))
+            .then(r=>r.json())
+            .then(data=>{
+                // RevEsp puede venir como string JSON, array o string simple
+                let opts = [];
+                try {
+                    // Si ya es array
+                    if (Array.isArray(data.RevEsp?.value)) {
+                        opts = data.RevEsp.value;
+                    } else if (typeof data.RevEsp?.value === 'string') {
+                        // Si es string, intenta parsear
+                        opts = JSON.parse(data.RevEsp.value);
+                        if (typeof opts === 'string') opts = [opts];
+                    }
+                } catch (e) { opts = []; }
+                document.getElementById('EspacioLibre').checked  = opts.includes('EspacioLibre');
+                document.getElementById('UsoCorrecto').checked   = opts.includes('UsoCorrecto');
+            })
+            .catch(()=>{});
+    }
+
+    document.getElementById('revForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!taskId){
+            alert('No se pudo determinar el taskId.');
+            return;
+        }
+
+        // Recolecta los checks seleccionados y arma el array
+        const seleccionados = [];
+        if(document.getElementById('EspacioLibre').checked)  seleccionados.push('EspacioLibre');
+        if(document.getElementById('UsoCorrecto').checked)   seleccionados.push('UsoCorrecto');
+
+        // Envía como String (JSON serializado)
+        const variables = {
+            RevEsp: { value: JSON.stringify(seleccionados), type: "String" }
+        };
+
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId) + '/completar', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(variables)
+        }).then(r=>{
+            if(r.ok){
+                document.getElementById('mensajeExito').innerText = '✅ Evaluación guardada y enviada.';
+                document.getElementById('mensajeExito').style.display = '';
+                document.getElementById('btnEnviar').disabled = true;
+            }else{
+                alert('Error al guardar la evaluación.');
+            }
+        }).catch(()=>{
+            alert('Error de conexión.');
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumen de Valores</title>
+    <style>
+        body { font-family: 'Montserrat', Arial, sans-serif; background: #f3f3fd; }
+        .form-card { margin: 40px auto; background: #fff; border-radius: 14px; max-width: 700px; box-shadow: 0 4px 24px #5a579726; padding: 32px 40px;}
+        label { color: #2b2d2f; font-weight: 600; font-size: 15px; margin-bottom: 4px; display: block;}
+        input { width: 100%; border-radius: 6px; border: 2px solid #e0e0e0; padding: 10px 12px; font-size: 16px; margin-bottom: 22px; background: #f5f5f5; color: #424242;}
+        input[readonly] { background: #f5f5f5; color: #888; }
+        .volver-btn { margin-bottom: 20px; background: #6a82fb; color: #fff; border: none; padding: 9px 22px; border-radius: 6px; font-size: 15px; cursor: pointer; font-weight: 600; transition: background 0.16s;}
+        .volver-btn:hover { background: #44318d; }
+        .completar-btn { background: #536dfe; color: #fff; border: none; padding: 12px 32px; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: 600; transition: background 0.16s;}
+        .completar-btn:hover { background: #3949ab; }
+        .exito-msg { color: #28bb6a; margin-top: 16px; font-size: 15px; font-weight: 600;}
+    </style>
+</head>
+<body>
+<div class="form-card">
+    <button onclick="window.location.href='menuEmpleado.html'" class="volver-btn">← Volver al inicio</button>
+    <h2 style="margin-bottom:18px;">Resumen</h2>
+
+    <label for="Nombre">Nombre</label>
+    <input type="text" id="Nombre" readonly>
+
+    <label for="Direccion">Dirección</label>
+    <input type="text" id="Direccion" readonly>
+
+    <label for="variableTotal">Valor Total a pagar</label>
+    <input type="text" id="variableTotal" readonly>
+
+    <button class="completar-btn" id="btnCompletar">Completar</button>
+    <div id="mensajeExito" class="exito-msg" style="display:none;"></div>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const taskId = params.get('taskId');
+
+    if (!taskId) {
+        alert('No se especificó taskId en la URL.');
+    } else {
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId))
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('Nombre').value         = data.Nombre?.value || '';
+                document.getElementById('Direccion').value      = data.Direccion?.value || '';
+                document.getElementById('variableTotal').value  = data.variableTotal?.value || '';
+            })
+            .catch(() => {
+                alert('Error consultando los datos.');
+            });
+    }
+
+    document.getElementById('btnCompletar').addEventListener('click', function() {
+        if (!taskId) {
+            alert('No se pudo determinar el taskId.');
+            return;
+        }
+        fetch('/api/empleado/tarea/' + encodeURIComponent(taskId) + '/completar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: '{}' // No necesitas pasar variables para solo completar
+        })
+            .then(r => {
+                if(r.ok) {
+                    document.getElementById('mensajeExito').innerText = '✅ Tarea completada, flujo avanzado.';
+                    document.getElementById('mensajeExito').style.display = '';
+                    document.getElementById('btnCompletar').disabled = true;
+                } else {
+                    alert('Error al completar la tarea.');
+                }
+            })
+            .catch(() => {
+                alert('Error de conexión.');
+            });
+    });
+</script>
+</body>
+</html>

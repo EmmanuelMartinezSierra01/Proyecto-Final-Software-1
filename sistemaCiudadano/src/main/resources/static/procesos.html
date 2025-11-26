@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Procesos por cédula</title>
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #f3f3fd;
+            min-height: 100vh;
+            margin:0;
+            display: flex; justify-content:center; align-items:center;
+        }
+        .list-card {
+            background: #fff;
+            box-shadow: 0 4px 24px rgba(76,51,158,0.18);
+            border-radius: 16px;
+            padding: 34px 36px;
+            text-align: center;
+            max-width: 500px;
+            width:100%;
+        }
+        h2 { color: #282c34; margin-bottom: 14px;}
+        ul { text-align: left; margin-top:15px;}
+        li { padding: 8px 0; border-bottom:1px solid #ececec;}
+        .respuesta {
+            margin: 8px 0 12px 0;
+            background: #f8faff;
+            border-left: 4px solid #6a82fb;
+            padding: 7px 15px;
+            border-radius: 6px;
+            color: #374151;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .sin-respuesta {
+            color: #b1adb7;
+            font-size: 13px;
+            margin: 6px 0 12px 0;
+        }
+        .volver-btn {
+            margin-top: 18px;
+            background: #6a82fb;
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 7px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.18s;
+        }
+        .volver-btn:hover { background: #44318d; }
+    </style>
+</head>
+<body>
+<div class="list-card">
+    <button onclick="window.location.href='index.html'" class="volver-btn">
+        ← Volver al inicio
+    </button>
+    <h2>Procesos para la cédula:</h2>
+    <div id="cedulaVal"></div>
+    <ul id="procesosLista">
+        <li>Cargando...</li>
+    </ul>
+</div>
+
+<script>
+    function getCedulaFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('cedula');
+    }
+    const cedula = getCedulaFromURL();
+    document.getElementById('cedulaVal').textContent = cedula;
+
+    fetch("/api/pqrs/consultar?cedula=" + encodeURIComponent(cedula))
+        .then(r => r.json())
+        .then(data => {
+            const ul = document.getElementById('procesosLista');
+            ul.innerHTML = '';
+            if (!data.length) {
+                ul.innerHTML = '<li>No se encontraron procesos para esta cédula.</li>';
+            } else {
+                for (const proc of data) {
+                    let li = document.createElement('li');
+                    li.innerHTML = `<strong>#${proc.id} - ${proc.tipoSolicitud}</strong><br>
+                        <span>${proc.detalleSolicitud}</span>
+                        <br><span style="font-weight:500;">[${proc.estado || "En trámite"}]</span>`;
+                    if (proc.respuestaSistema && proc.respuestaSistema.trim() !== '') {
+                        li.innerHTML += `<div class="respuesta"><b>Respuesta del sistema:</b><br>${proc.respuestaSistema}</div>`;
+                    } else {
+                        li.innerHTML += `<div class="sin-respuesta">Sin respuesta aún.</div>`;
+                    }
+                    ul.appendChild(li);
+                }
+            }
+        })
+        .catch(err => {
+            const ul = document.getElementById('procesosLista');
+            ul.innerHTML = '<li>Error al consultar procesos.</li>';
+        });
+</script>
+</body>
+</html>
