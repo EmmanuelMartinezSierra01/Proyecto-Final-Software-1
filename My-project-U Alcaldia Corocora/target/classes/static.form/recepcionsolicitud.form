@@ -1,0 +1,99 @@
+{
+  "components": [
+    {
+      "label": "Nombre",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_14lvrt4",
+        "columns": null
+      },
+      "id": "Field_0iaeu3b",
+      "key": "nombreSolicitante",
+      "disabled": false,
+      "validate": {
+        "required": true
+      },
+      "description": "Ingrese el nombre completo"
+    },
+    {
+      "label": "Identificación",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0apqeke",
+        "columns": null
+      },
+      "id": "Field_0y93s1i",
+      "key": "documentoIdentidad",
+      "properties": {},
+      "description": "Ingrese solo numeros",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Dirección de la obra",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1va2pw9",
+        "columns": null
+      },
+      "id": "Field_04t5y26",
+      "key": "direccionObra",
+      "description": "Ejem: Cra  #21-39 San Jose",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Tipo de trámite",
+      "values": [
+        {
+          "label": "Licencia de construcción",
+          "value": "construccion"
+        },
+        {
+          "label": "Modificación",
+          "value": "modificacion"
+        },
+        {
+          "label": "Ampliación",
+          "value": "ampliacion"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_0unllpd",
+        "columns": null
+      },
+      "id": "Field_1dzoftm",
+      "key": "tipoTramite",
+      "defaultValue": "construccion",
+      "searchable": false,
+      "disabled": false,
+      "description": "Selecccione el tipo de tramite",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Observaciones",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_14z65vl",
+        "columns": null
+      },
+      "id": "Field_1n67agv",
+      "key": "observaciones",
+      "description": "Ingrese sus oservaciones"
+    }
+  ],
+  "type": "default",
+  "id": "recepcionsolicitud",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "schemaVersion": 19
+}

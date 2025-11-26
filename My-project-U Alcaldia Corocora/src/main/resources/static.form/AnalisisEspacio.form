@@ -1,0 +1,50 @@
+{
+  "components": [
+    {
+      "label": "Tipo de uso",
+      "values": [
+        {
+          "label": "Publicidad",
+          "value": "Publicidad"
+        },
+        {
+          "label": "Reunion",
+          "value": "Reunion"
+        },
+        {
+          "label": "Feria",
+          "value": "Feria"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_15namr5",
+        "columns": null
+      },
+      "id": "Field_1k7mw48",
+      "key": "Tipo_Uso",
+      "description": "Que tipo de uso va hacer",
+      "readonly": false,
+      "disabled": true
+    },
+    {
+      "label": "Cobro",
+      "type": "number",
+      "layout": {
+        "row": "Row_0ep4lcl",
+        "columns": null
+      },
+      "id": "Field_1tm7f9q",
+      "key": "Cobro"
+    }
+  ],
+  "type": "default",
+  "id": "AnalisisEspacio",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "schemaVersion": 19
+}

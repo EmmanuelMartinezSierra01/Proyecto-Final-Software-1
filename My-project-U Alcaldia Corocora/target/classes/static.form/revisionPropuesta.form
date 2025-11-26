@@ -1,0 +1,66 @@
+{
+  "components": [
+    {
+      "label": "Nombre Solicitante",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1bogejb",
+        "columns": null
+      },
+      "id": "Field_1q250cx",
+      "key": "nombreSolicitante",
+      "readonly": true
+    },
+    {
+      "label": "Tipo de solicitud",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1k07rxp",
+        "columns": null
+      },
+      "id": "Field_08if8fn",
+      "key": "tipoSolicitud",
+      "readonly": true
+    },
+    {
+      "label": "Propuesta recibida",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0dsvatk",
+        "columns": null
+      },
+      "id": "Field_1d5aadw",
+      "key": "propuestaDesarrollada",
+      "readonly": true
+    },
+    {
+      "label": "¿Es esta propuesta satisfactoria?",
+      "values": [
+        {
+          "label": "Si, es satisfactoria",
+          "value": "true"
+        },
+        {
+          "label": "No, no es satisfactoria",
+          "value": "false"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_1pqxjqy",
+        "columns": null
+      },
+      "id": "Field_1dbeqdy",
+      "key": "esSatisfactoria"
+    }
+  ],
+  "type": "default",
+  "id": "revisionPropuesta",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.38.1"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 19
+}

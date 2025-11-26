@@ -1,0 +1,142 @@
+{
+  "components": [
+    {
+      "label": "Solicitud ID",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1y0mljv",
+        "columns": null
+      },
+      "id": "Field_14b4haa",
+      "key": "solicitudId",
+      "readonly": true
+    },
+    {
+      "label": "Nombre del solicitante",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1cb198c",
+        "columns": null
+      },
+      "id": "Field_1g8pyf5",
+      "key": "nombreSolicitante",
+      "readonly": true
+    },
+    {
+      "label": "Dirección de la obra",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0tye2k0",
+        "columns": null
+      },
+      "id": "Field_0ebq8ks",
+      "key": "direccionObra",
+      "readonly": true
+    },
+    {
+      "label": "Documento de identidad",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1e24wrz",
+        "columns": null
+      },
+      "id": "Field_1qx9zhm",
+      "key": "documentoIdentidad"
+    },
+    {
+      "label": "Propiedad acreditada",
+      "values": [
+        {
+          "label": "Si",
+          "value": "true"
+        },
+        {
+          "label": "No",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_1e24wrz",
+        "columns": null
+      },
+      "id": "Field_1xgrttm",
+      "key": "propiedadAcreditada",
+      "description": "¿Propiedad debidamente acreditada?",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Sin restricciones legales",
+      "values": [
+        {
+          "label": "Si",
+          "value": "true"
+        },
+        {
+          "label": "No",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_1e24wrz",
+        "columns": null
+      },
+      "id": "Field_17yjc0r",
+      "key": "sinRestriccionesLegales",
+      "description": "¿Sin restricciones legales sobre el predio?",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Observaciones jurídicas",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1e24wrz",
+        "columns": null
+      },
+      "id": "Field_1d4r52e",
+      "key": "observacionesJuridicas",
+      "description": "Detalle los hallazgos de la evaluación jurídica",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Evaluación jurídica final",
+      "values": [
+        {
+          "label": "APROBADA",
+          "value": "true"
+        },
+        {
+          "label": "RECHAZADA",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_1e24wrz",
+        "columns": null
+      },
+      "id": "Field_1ip8cgl",
+      "key": "evaluacionJuridica",
+      "description": "¿En base a los resultados obtenios considera que aprueba la evaluación?",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "evaluacionjuridica",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "schemaVersion": 19
+}

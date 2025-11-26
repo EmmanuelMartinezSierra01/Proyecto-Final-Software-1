@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="VerificarDocumentos" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.39.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
+  <decision id="verificarDocumentos" name="verificarDocumentos" camunda:historyTimeToLive="1">
+    <decisionTable id="DecisionTable_1ljzldc" hitPolicy="FIRST">
+      <input id="Input_1" label="cedula" biodi:width="192" camunda:inputVariable="cedula">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0o60xwr" label="numeroCelular" camunda:inputVariable="numeroCelular">
+        <inputExpression id="LiteralExpression_1atk2bb" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_19yvsif" label="correoElectronico" biodi:width="214" camunda:inputVariable="correoElectronico">
+        <inputExpression id="LiteralExpression_13ub4up" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1196jdq" label="direccion" camunda:inputVariable="direccion">
+        <inputExpression id="LiteralExpression_14c8jir" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_05lte58" label="detalleSolicitud" camunda:inputVariable="detalleSolicitud">
+        <inputExpression id="LiteralExpression_1aioqnl" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="documentosCompletos" typeRef="boolean" biodi:width="221" />
+      <rule id="DecisionRule_0n2s79o">
+        <inputEntry id="UnaryTests_1juxqxu">
+          <text>not("")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0drzltn">
+          <text>not("")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08qi6a2">
+          <text>not("")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qdasfp">
+          <text>not("")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jgkmpt">
+          <text>not("")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1smfi5a">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_19r6i2x">
+        <inputEntry id="UnaryTests_1340xip">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xzrdb1">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p9abyr">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1s1q42s">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_13x1nnn">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1uul4nd">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="verificarDocumentos">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

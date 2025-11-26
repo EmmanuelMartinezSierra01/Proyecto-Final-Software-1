@@ -1,0 +1,145 @@
+{
+  "components": [
+    {
+      "label": "Solicitud ID",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1n1z7se",
+        "columns": null
+      },
+      "id": "Field_1f52gtb",
+      "key": "solicitudId",
+      "readonly": true
+    },
+    {
+      "label": "Nombre del solicitante",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0maz697",
+        "columns": null
+      },
+      "id": "Field_0cthco7",
+      "key": "nombreSolicitante",
+      "readonly": true
+    },
+    {
+      "label": "Información que fue solicitada al ciudadano",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1b6n20s",
+        "columns": null
+      },
+      "id": "Field_0mfltbs",
+      "key": "informacionSolicitada",
+      "readonly": true
+    },
+    {
+      "label": "Fecha límite para presentar documentación",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0evtzws",
+        "columns": null
+      },
+      "id": "Field_0revh15",
+      "key": "fechaLimiteDocumentos",
+      "readonly": true
+    },
+    {
+      "label": "Escritura del predio recibida",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_1j3q2g3",
+        "columns": null
+      },
+      "id": "Field_1dfoghs",
+      "key": "escrituraRecibida"
+    },
+    {
+      "label": "Planos arquitectónicos y estructurales recibidos",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_1ascd2a",
+        "columns": null
+      },
+      "id": "Field_1xb37hl",
+      "key": "planosRecibidos"
+    },
+    {
+      "label": "Certificados de uso de suelo recibidos",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_1ascd2a",
+        "columns": null
+      },
+      "id": "Field_0u63vfk",
+      "key": "certificadosRecibidos"
+    },
+    {
+      "label": "Observaciones sobre la documentación recibida",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_12ugz6u",
+        "columns": null
+      },
+      "id": "Field_17wvj4x",
+      "key": "observacionesDocumentacion",
+      "description": "Indique el estado de los documentos recibidos"
+    },
+    {
+      "label": "¿El ciudadano presentó la documentación complementaria solicitada?",
+      "values": [
+        {
+          "label": "Documentación presentada",
+          "value": "true"
+        },
+        {
+          "label": "No presentó documentación",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_12ugz6u",
+        "columns": null
+      },
+      "id": "Field_18jo6ua",
+      "key": "documentacionRecibida",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "¿La documentación ahora está completa?",
+      "values": [
+        {
+          "label": "Documentación completa",
+          "value": "true"
+        },
+        {
+          "label": "Aún falta documentación",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_12ugz6u",
+        "columns": null
+      },
+      "id": "Field_0zdaubl",
+      "key": "documentacionCompleta",
+      "description": "Considerando los documentos iniciales más los complementarios",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "recibirdocumentacion",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "schemaVersion": 19
+}

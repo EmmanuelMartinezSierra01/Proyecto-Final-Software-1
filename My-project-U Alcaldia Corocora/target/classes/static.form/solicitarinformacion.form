@@ -1,0 +1,96 @@
+{
+  "components": [
+    {
+      "label": "Solicitud ID",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ogz767",
+        "columns": null
+      },
+      "id": "Field_0g9ltat",
+      "key": "solicitudId",
+      "readonly": true
+    },
+    {
+      "label": "Nombre del solicitante",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ogz767",
+        "columns": null
+      },
+      "id": "Field_14159l1",
+      "key": "nombreSolicitante",
+      "readonly": true
+    },
+    {
+      "label": "Documentos identificados como faltantes",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0ogz767",
+        "columns": null
+      },
+      "id": "Field_0qalt37",
+      "key": "documentosFaltantes",
+      "readonly": true
+    },
+    {
+      "label": "Detalle de la información y documentos solicitados",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0ogz767",
+        "columns": null
+      },
+      "id": "Field_1rhvaju",
+      "key": "informacionSolicitada",
+      "description": "Especifique claramente qué debe presentar el ciudadano",
+      "validate": {
+        "required": true,
+        "minLength": "20"
+      }
+    },
+    {
+      "label": "Fecha límite para presentar documentación",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ogz767",
+        "columns": null
+      },
+      "id": "Field_07612y3",
+      "key": "textfield_w8ozx",
+      "description": "Formato: YYYY-MM-DD (máximo 30 días) ",
+      "defaultValue": "fechaLimiteDocumentos",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "¿Confirmar envío de solicitud al ciudadano?",
+      "values": [
+        {
+          "label": "Enviar",
+          "value": "true"
+        },
+        {
+          "label": "Cancelar",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_0ogz767",
+        "columns": null
+      },
+      "id": "Field_0fmjhpx",
+      "key": "solicitudEnviada"
+    }
+  ],
+  "type": "default",
+  "id": "solicitarinformacionadicional",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "schemaVersion": 19
+}

@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "label": "Solicitud Ajuste Propuesta",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1qz5yhi",
+        "columns": null
+      },
+      "id": "Field_0w29nhh",
+      "key": "solicitudAjuste"
+    }
+  ],
+  "type": "default",
+  "id": "solicitudAjustePropuesta",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.38.1"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 19
+}

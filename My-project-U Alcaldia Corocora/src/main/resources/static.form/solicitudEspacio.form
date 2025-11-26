@@ -1,0 +1,72 @@
+{
+  "components": [
+    {
+      "label": "Solicitud escrita",
+      "type": "checkbox",
+      "layout": { "row": "Row_1", "columns": null },
+      "id": "Field_solicitud",
+      "key": "Solicitud"
+    },
+    {
+      "label": "Otra documentación",
+      "type": "checkbox",
+      "layout": { "row": "Row_2", "columns": null },
+      "id": "Field_documentos",
+      "key": "Documentos"
+    },
+    {
+      "label": "Espacio libre",
+      "type": "checkbox",
+      "layout": { "row": "Row_3", "columns": null },
+      "id": "Field_espacioLibre",
+      "key": "EspacioLibre"
+    },
+    {
+      "label": "Uso correcto",
+      "type": "checkbox",
+      "layout": { "row": "Row_4", "columns": null },
+      "id": "Field_usoCorrecto",
+      "key": "UsoCorrecto"
+    },
+    {
+      "label": "Nombre",
+      "type": "textfield",
+      "layout": { "row": "Row_5", "columns": null },
+      "id": "Field_nombre",
+      "key": "Nombre"
+    },
+    {
+      "label": "Dirección",
+      "type": "textfield",
+      "layout": { "row": "Row_6", "columns": null },
+      "id": "Field_direccion",
+      "key": "Direccion"
+    },
+    {
+      "label": "Tipo de uso",
+      "values": [
+        { "label": "Publicidad", "value": "Publicidad" },
+        { "label": "Reunion", "value": "Reunion" },
+        { "label": "Feria", "value": "Feria" }
+      ],
+      "type": "select",
+      "layout": { "row": "Row_7", "columns": null },
+      "id": "Field_tipoUso",
+      "key": "Tipo_Uso"
+    },
+    {
+      "label": "Cobro base",
+      "type": "number",
+      "layout": { "row": "Row_8", "columns": null },
+      "id": "Field_cobro",
+      "key": "Cobro"
+    }
+  ],
+  "type": "default",
+  "id": "solicitudEspacio",
+  "exporter": { "name": "Camunda Modeler", "version": "5.39.0" },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 19
+}
+

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0qf0bgf" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.39.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
+  <decision id="asignarDependencia" name="Asignar Dependencia " camunda:historyTimeToLive="1">
+    <decisionTable id="DecisionTable_1sz5962">
+      <input id="Input_1" label="tipoSolicitud" camunda:inputVariable="tipoSolicitud">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="dependenciaAsignada" typeRef="string" />
+      <rule id="DecisionRule_1eesblq">
+        <inputEntry id="UnaryTests_1nb7gfv">
+          <text>"peticion"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0d8l0e7">
+          <text>"Atención al Ciudadano"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_049sz9e">
+        <inputEntry id="UnaryTests_03gxtsv">
+          <text>"queja"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1x0ylle">
+          <text>"Control Interno"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03tqjec">
+        <inputEntry id="UnaryTests_14cngcz">
+          <text>"reclamo"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1siu5uh">
+          <text>"Departamento Legal"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="asignarDependencia">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

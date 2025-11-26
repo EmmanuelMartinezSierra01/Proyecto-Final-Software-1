@@ -1,0 +1,33 @@
+{
+  "components": [
+    {
+      "label": "Solicitud escrita",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0phdyjg",
+        "columns": null
+      },
+      "id": "Field_0l28rx7",
+      "key": "Solicitud"
+    },
+    {
+      "label": "Otras documentación",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0l3da2w",
+        "columns": null
+      },
+      "id": "Field_1qhcclc",
+      "key": "Documentos"
+    }
+  ],
+  "type": "default",
+  "id": "RevD",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.36.1"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 18
+}

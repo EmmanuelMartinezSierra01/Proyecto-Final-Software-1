@@ -1,0 +1,85 @@
+{
+  "components": [
+    {
+      "label": "Solicitud ID",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0xxdhbh",
+        "columns": null
+      },
+      "id": "Field_0rguggg",
+      "key": "solicitudId",
+      "readonly": true
+    },
+    {
+      "label": "Nombre del solicitante",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0xxdhbh",
+        "columns": null
+      },
+      "id": "Field_018o9ei",
+      "key": "nombreSolicitante",
+      "readonly": true
+    },
+    {
+      "label": "Información que fue solicitada",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0xxdhbh",
+        "columns": null
+      },
+      "id": "Field_1aysi0t",
+      "key": "informacionSolicitada",
+      "readonly": true
+    },
+    {
+      "label": "Fecha límite (vencida)",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0xxdhbh",
+        "columns": null
+      },
+      "id": "Field_0zddj1p",
+      "key": "fechaLimiteDocumentos",
+      "readonly": true
+    },
+    {
+      "label": "Detalle del motivo de archivo",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0ndsvbd",
+        "columns": null
+      },
+      "id": "Field_1558xv7",
+      "key": "archivoMotivo",
+      "description": "Describa las razones específicas del archivo",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Fecha de archivo",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ndsvbd",
+        "columns": null
+      },
+      "id": "Field_0ybho2o",
+      "key": "fechaArchivo",
+      "description": "Formato: YYYY-MM-DD",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "archivar",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "schemaVersion": 19
+}

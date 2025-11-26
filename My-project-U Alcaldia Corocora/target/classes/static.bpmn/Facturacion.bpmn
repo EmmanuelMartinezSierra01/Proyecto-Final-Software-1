@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1cmfnre" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.39.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
+  <bpmn:collaboration id="Collaboration_0yyj7ii">
+    <bpmn:participant id="Participant_1aqu5yp" name="Facturación" processRef="Facturacion" />
+  </bpmn:collaboration>
+  <bpmn:process id="Facturacion" name="" isExecutable="true" camunda:historyTimeToLive="1">
+    <bpmn:startEvent id="StartEvent_1" name="Solicitud de facturación">
+      <bpmn:outgoing>Flow_1pti1m1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_0ihkixm" name="Realizar analisis del espacio y uso" camunda:formRef="AnalisisEspacio" camunda:formRefBinding="latest">
+      <bpmn:incoming>Flow_1pti1m1</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vow8wp</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1pti1m1" sourceRef="StartEvent_1" targetRef="Activity_0ihkixm" />
+    <bpmn:sequenceFlow id="Flow_0vow8wp" sourceRef="Activity_0ihkixm" targetRef="Activity_1jhos5u" />
+    <bpmn:businessRuleTask id="Activity_1jhos5u" name="Clasificar Cobro" camunda:resultVariable="variableTotal" camunda:decisionRef="clasificarCobro" camunda:mapDecisionResult="singleEntry" camunda:decisionRefTenantId="">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="Tipo_Uso">${Tipo_Uso}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0vow8wp</bpmn:incoming>
+      <bpmn:outgoing>Flow_0k2myb6</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:sequenceFlow id="Flow_0k2myb6" sourceRef="Activity_1jhos5u" targetRef="Activity_05cyvbs" />
+    <bpmn:userTask id="Activity_05cyvbs" name="Generar Factura de pago" camunda:formRef="Factura_Pago" camunda:formRefBinding="latest">
+      <bpmn:incoming>Flow_0k2myb6</bpmn:incoming>
+      <bpmn:outgoing>Flow_09bw0ob</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_049ud6o" name="Factura creada">
+      <bpmn:incoming>Flow_09bw0ob</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_09bw0ob" sourceRef="Activity_05cyvbs" targetRef="Event_049ud6o" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0yyj7ii">
+      <bpmndi:BPMNShape id="Participant_1aqu5yp_di" bpmnElement="Participant_1aqu5yp" isHorizontal="true">
+        <dc:Bounds x="160" y="55" width="880" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="262" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="252" y="205" width="57" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1g46qb1_di" bpmnElement="Activity_0ihkixm">
+        <dc:Bounds x="350" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00g217s_di" bpmnElement="Activity_1jhos5u">
+        <dc:Bounds x="510" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1az1q3y_di" bpmnElement="Activity_05cyvbs">
+        <dc:Bounds x="670" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_049ud6o_di" bpmnElement="Event_049ud6o">
+        <dc:Bounds x="832" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="813" y="205" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1pti1m1_di" bpmnElement="Flow_1pti1m1">
+        <di:waypoint x="298" y="180" />
+        <di:waypoint x="350" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vow8wp_di" bpmnElement="Flow_0vow8wp">
+        <di:waypoint x="450" y="180" />
+        <di:waypoint x="510" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0k2myb6_di" bpmnElement="Flow_0k2myb6">
+        <di:waypoint x="610" y="180" />
+        <di:waypoint x="670" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09bw0ob_di" bpmnElement="Flow_09bw0ob">
+        <di:waypoint x="770" y="180" />
+        <di:waypoint x="832" y="180" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

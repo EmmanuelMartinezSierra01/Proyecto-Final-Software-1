@@ -1,0 +1,49 @@
+{
+  "components": [
+    {
+      "label": "Nombre",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0gpe06i",
+        "columns": null
+      },
+      "id": "Field_09jaepe",
+      "key": "Nombre",
+      "readonly": false,
+      "disabled": true
+    },
+    {
+      "label": "Direccion",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1rkmn2h",
+        "columns": null
+      },
+      "id": "Field_0o8ee1c",
+      "key": "Direccion",
+      "readonly": false,
+      "disabled": true
+    },
+    {
+      "label": "Valor Total a pagar",
+      "type": "number",
+      "layout": {
+        "row": "Row_19zzcin",
+        "columns": null
+      },
+      "id": "Field_0vuis2d",
+      "key": "variableTotal",
+      "readonly": false,
+      "disabled": true
+    }
+  ],
+  "type": "default",
+  "id": "Factura_Pago",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 19
+}

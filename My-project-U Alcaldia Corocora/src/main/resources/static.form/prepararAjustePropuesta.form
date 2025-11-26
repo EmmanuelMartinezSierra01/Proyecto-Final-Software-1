@@ -1,0 +1,67 @@
+{
+  "components": [
+    {
+      "label": "Petición",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1v7q62w",
+        "columns": null
+      },
+      "id": "Field_18wmu31",
+      "key": "solicitudAjuste",
+      "readonly": true
+    },
+    {
+      "label": "Nombre Solicitante",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_12319tl",
+        "columns": null
+      },
+      "id": "Field_1gj5awb",
+      "key": "nombreSolicitante",
+      "readonly": true
+    },
+    {
+      "label": "Tipo de solicitud",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_16rxv3o",
+        "columns": null
+      },
+      "id": "Field_17pdp99",
+      "key": "tipoSolicitud",
+      "readonly": true
+    },
+    {
+      "label": "Detalle de la solicitud",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1rjs6m9",
+        "columns": null
+      },
+      "id": "Field_0c8e5t9",
+      "key": "detalleSolicitud",
+      "readonly": true
+    },
+    {
+      "label": "Escriba la propuesta",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_050d0o7",
+        "columns": null
+      },
+      "id": "Field_1yijzod",
+      "key": "propuestaDesarrollada"
+    }
+  ],
+  "type": "default",
+  "id": "prepararAjustePropuesta",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.38.1"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 19
+}

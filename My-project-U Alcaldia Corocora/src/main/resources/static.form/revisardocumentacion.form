@@ -1,0 +1,133 @@
+{
+  "components": [
+    {
+      "label": "Solicitud ID",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_132r9v3",
+        "columns": null
+      },
+      "id": "Field_1bayyk8",
+      "key": "solicitudId",
+      "readonly": true
+    },
+    {
+      "label": "Nombre del solicitante",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0mp59hx",
+        "columns": null
+      },
+      "id": "Field_0iv7oem",
+      "key": "nombreSolicitante",
+      "readonly": true
+    },
+    {
+      "label": "Dirección de la obra",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0mp59hx",
+        "columns": null
+      },
+      "id": "Field_0vg6af2",
+      "key": "direccionObra",
+      "readonly": true
+    },
+    {
+      "label": "Escritura del predio presentada",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0mp59hx",
+        "columns": null
+      },
+      "id": "Field_1eoox3b",
+      "key": "tieneEscritura"
+    },
+    {
+      "label": "Planos arquitectónicos y estructurales",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_1xhcsgw",
+        "columns": null
+      },
+      "id": "Field_1wji2ok",
+      "key": "tienePlanos"
+    },
+    {
+      "label": "Certificado de paz y salvo de licencias anteriores",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_1xhcsgw",
+        "columns": null
+      },
+      "id": "Field_099u6qh",
+      "key": "tieneLicenciasPrevias"
+    },
+    {
+      "label": "Documentos faltantes o incompletos",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1xhcsgw",
+        "columns": null
+      },
+      "id": "Field_1iojl3a",
+      "key": "documentosFaltantes",
+      "description": "Liste los documentos que faltan o requieren corrección"
+    },
+    {
+      "label": "¿La documentación está completa?",
+      "values": [
+        {
+          "label": "Completa",
+          "value": "true"
+        },
+        {
+          "label": "Falta documentación",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_1xhcsgw",
+        "columns": null
+      },
+      "id": "Field_0rg1c67",
+      "key": "documentacionCompleta",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "¿Requiere solicitar documentación adicional al ciudadano?",
+      "values": [
+        {
+          "label": "Sí",
+          "value": "true"
+        },
+        {
+          "label": "No",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_1xhcsgw",
+        "columns": null
+      },
+      "id": "Field_1p6d740",
+      "key": "requiereDocumentacionAdicional",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "revisardocumentacion",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "schemaVersion": 19
+}

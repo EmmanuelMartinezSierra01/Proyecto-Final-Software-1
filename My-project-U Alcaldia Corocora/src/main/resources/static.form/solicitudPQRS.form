@@ -1,0 +1,110 @@
+{
+  "components": [
+    {
+      "label": "Nombres y Apellidos",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0smpud2",
+        "columns": null
+      },
+      "id": "Field_08e6npz",
+      "key": "nombreSolicitante",
+      "validate": {
+        "required": false
+      }
+    },
+    {
+      "label": "Cedula",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0smpud2",
+        "columns": null
+      },
+      "id": "Field_02m1xk7",
+      "key": "cedula"
+    },
+    {
+      "label": "Número de celular",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0rkq09t",
+        "columns": null
+      },
+      "id": "Field_0yolp4a",
+      "key": "numeroCelular",
+      "validate": {
+        "required": false
+      }
+    },
+    {
+      "label": "Correo electronico",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0rkq09t",
+        "columns": null
+      },
+      "id": "Field_1dlsf8x",
+      "key": "correoElectronico",
+      "properties": {}
+    },
+    {
+      "label": "Dirección",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1xroc70",
+        "columns": null
+      },
+      "id": "Field_12nzrya",
+      "key": "direccion"
+    },
+    {
+      "label": "Tipo de solicitud",
+      "values": [
+        {
+          "label": "Petición",
+          "value": "peticion"
+        },
+        {
+          "label": "Queja",
+          "value": "queja"
+        },
+        {
+          "label": "Reclamo",
+          "value": "reclamo"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_1xroc70",
+        "columns": null
+      },
+      "id": "Field_08lu6wb",
+      "key": "tipoSolicitud",
+      "validate": {
+        "required": false
+      }
+    },
+    {
+      "label": "Detalle de la solicitud",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0zsfgqh",
+        "columns": null
+      },
+      "id": "Field_15g56ad",
+      "key": "detalleSolicitud",
+      "validate": {
+        "required": false
+      }
+    }
+  ],
+  "type": "default",
+  "id": "solicitudPQRS",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.38.1"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 19
+}

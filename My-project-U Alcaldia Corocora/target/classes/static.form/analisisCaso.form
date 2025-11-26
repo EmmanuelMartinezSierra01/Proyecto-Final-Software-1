@@ -1,0 +1,61 @@
+{
+  "components": [
+    {
+      "label": "Nombre Solicitante",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0347uc0",
+        "columns": null
+      },
+      "id": "Field_05jo2or",
+      "key": "nombreSolicitante",
+      "readonly": true,
+      "disabled": false
+    },
+    {
+      "label": "Cedula del solicitante",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1p007xs",
+        "columns": null
+      },
+      "id": "Field_05gplsr",
+      "key": "cedula",
+      "disabled": false,
+      "readonly": true
+    },
+    {
+      "label": "Tipo de solicitud",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1p007xs",
+        "columns": null
+      },
+      "id": "Field_1lmu9l4",
+      "key": "tipoSolicitud",
+      "disabled": false,
+      "readonly": true
+    },
+    {
+      "label": "Detalle de la solicitud",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_15lzg7m",
+        "columns": null
+      },
+      "id": "Field_13585e5",
+      "key": "detalleSolicitud",
+      "disabled": false,
+      "readonly": true
+    }
+  ],
+  "type": "default",
+  "id": "analisisCaso",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.38.1"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 19
+}

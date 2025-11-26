@@ -1,0 +1,34 @@
+{
+  "components": [
+    {
+      "label": "Requisitos necesarios",
+      "values": [
+        {
+          "label": "Espacio Libre",
+          "value": "EspacioLibre"
+        },
+        {
+          "label": "Uso Correcto",
+          "value": "UsoCorrecto"
+        }
+      ],
+      "type": "checklist",
+      "layout": {
+        "row": "Row_0n880lr",
+        "columns": null
+      },
+      "id": "Field_1ku4nti",
+      "key": "RevEsp",
+      "description": "Requisitos necesarios para la aprovacion de la solicitud"
+    }
+  ],
+  "type": "default",
+  "id": "RevEsp",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 19
+}

@@ -1,0 +1,136 @@
+{
+  "components": [
+    {
+      "label": "Solicitud ID",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ejm7r7",
+        "columns": null
+      },
+      "id": "Field_0313hde",
+      "key": "solicitudId",
+      "readonly": true,
+      "disabled": false
+    },
+    {
+      "label": "Nombre del solicitante",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ejm7r7",
+        "columns": null
+      },
+      "id": "Field_0x41iqs",
+      "key": "nombreSolicitante",
+      "readonly": true
+    },
+    {
+      "label": "Dirección de la obra",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ejm7r7",
+        "columns": null
+      },
+      "id": "Field_1itc7iv",
+      "key": "direccionObra",
+      "readonly": true
+    },
+    {
+      "label": "Planos cumplen normativa",
+      "values": [
+        {
+          "label": "Si",
+          "value": "true"
+        },
+        {
+          "label": "No",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_0ejm7r7",
+        "columns": null
+      },
+      "id": "Field_1jnwzar",
+      "key": "cumpleNormasTecnicas",
+      "properties": {},
+      "readonly": false,
+      "validate": {
+        "required": true
+      },
+      "description": "¿Cumple normas técnicas?"
+    },
+    {
+      "label": "Diseño estructural adecuado",
+      "values": [
+        {
+          "label": "Sí",
+          "value": "true"
+        },
+        {
+          "label": "No",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_1kasldi",
+        "columns": null
+      },
+      "id": "Field_0069pis",
+      "key": "estructuraAdecuada",
+      "description": "¿Diseño estructural es adecuado?",
+      "readonly": false,
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Observaciones técnicas",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1kasldi",
+        "columns": null
+      },
+      "id": "Field_0wbf0x8",
+      "key": "observacionesTecnicas",
+      "description": "Detalle los hallazgos de la evaluación técnica",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Evaluación técnica Final",
+      "values": [
+        {
+          "label": "APROBADA",
+          "value": "true"
+        },
+        {
+          "label": "RECHAZADA",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_1kasldi",
+        "columns": null
+      },
+      "id": "Field_1im5on3",
+      "key": "evaluacionTecnica",
+      "description": "¿En base a los resultados obtenios considera que aprueba la evaluación?",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "evaluaciontecnica",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "schemaVersion": 19
+}

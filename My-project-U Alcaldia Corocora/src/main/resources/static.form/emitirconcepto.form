@@ -1,0 +1,123 @@
+{
+  "components": [
+    {
+      "label": " Solicitud ID",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1wegqnh",
+        "columns": null
+      },
+      "id": "Field_1kxe82f",
+      "key": "solicitudId",
+      "readonly": true
+    },
+    {
+      "label": "Nombre del solicitante",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0qvtfju",
+        "columns": null
+      },
+      "id": "Field_0fy7ogl",
+      "key": "nombreSolicitante",
+      "readonly": true
+    },
+    {
+      "label": "Evaluación técnica",
+      "values": [
+        {
+          "label": "APROBADA",
+          "value": "true"
+        },
+        {
+          "label": "RECHAZADA",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_13rgenf",
+        "columns": null
+      },
+      "id": "Field_0x9zd5x",
+      "key": "evaluacionTecnica",
+      "readonly": true
+    },
+    {
+      "label": "Observaciones técnicas",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_16b6f9i",
+        "columns": null
+      },
+      "id": "Field_1rb8zo0",
+      "key": "observacionesTecnicas",
+      "readonly": true
+    },
+    {
+      "label": "Evaluación jurídica",
+      "values": [
+        {
+          "label": "APROBADA",
+          "value": "true"
+        },
+        {
+          "label": "RECHAZADA",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_0akjldg",
+        "columns": null
+      },
+      "id": "Field_1xhgivb",
+      "key": "evaluacionJuridica",
+      "readonly": true
+    },
+    {
+      "label": "Observaciones jurídicas",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_039h9u3",
+        "columns": null
+      },
+      "id": "Field_19sgc6y",
+      "key": "observacionesJuridicas",
+      "readonly": true
+    },
+    {
+      "label": "Concepto final",
+      "values": [
+        {
+          "label": "FAVORABLE",
+          "value": "true"
+        },
+        {
+          "label": "DESFAVORABLE",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_039h9u3",
+        "columns": null
+      },
+      "id": "Field_0v4j2pb",
+      "key": "conceptoFavorable",
+      "description": "¿Que concepto se toma?",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "emitirconcepto",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "schemaVersion": 19
+}
